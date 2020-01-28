@@ -29,7 +29,27 @@ describe Oystercard do
 
   describe '#touch_in' do
     it 'returns "in use" ' do
-      expect( subject.touch_in).to eq("in use")
+      expect( subject.touch_in).to be true
     end
   end
+
+  describe '#touch_out' do
+    it 'returns "not in use"' do
+      expect(subject.touch_out).to be false
+    end
+  end
+
+  context 'when not in journey' do
+    it 'returns false' do
+      expect(subject.in_journey?).to be false
+    end
+  end
+
+  context 'when in journey' do
+    it 'returns true' do
+      subject.touch_in
+      expect(subject.in_journey?).to be true
+    end
+  end
+
 end
