@@ -17,7 +17,11 @@ describe Oystercard do
       subject.top_up(max_balance)
       expect{ subject.top_up(1) }.to raise_error("Amount entered exceeds top limit of £#{max_balance}")
     end
-
   end
 
+  describe '#deduct' do
+    it 'substracts money from balance' do
+      expect{ subject.deduct(1) }.to change{subject.balance}.by(-1)
+    end
+  end
 end
