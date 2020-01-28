@@ -15,6 +15,10 @@ class Oystercard
     @balance -= amount
   end
   
+  def touch_in
+    "in use"
+  end
+
   private
   def maximum_limit?(amount)
     balance + amount > MAX_BALANCE

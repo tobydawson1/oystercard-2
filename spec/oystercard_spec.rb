@@ -3,6 +3,8 @@ require 'oystercard'
 describe Oystercard do
   it { is_expected.to respond_to(:balance)}
 
+  it { is_expected.to respond_to(:touch_in) }
+
   it 'returns balance of 0' do
     expect(subject.balance).to eq 0
   end
@@ -22,6 +24,12 @@ describe Oystercard do
   describe '#deduct' do
     it 'substracts money from balance' do
       expect{ subject.deduct(1) }.to change{subject.balance}.by(-1)
+    end
+  end
+
+  describe '#touch_in' do
+    it 'returns "in use" ' do
+      expect( subject.touch_in).to eq("in use")
     end
   end
 end
