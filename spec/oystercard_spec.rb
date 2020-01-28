@@ -9,8 +9,7 @@ describe Oystercard do
 
   describe '#top_up' do
     it 'tops up card balance' do
-      expect(subject.top_up(10)).to eq 10
-      # try change syntax to 'change_by'
+      expect{subject.top_up(10)}.to change{subject.balance}.by(10)
     end
   end
 
