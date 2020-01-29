@@ -1,9 +1,12 @@
 require 'oystercard'
 
 describe Oystercard do
+
+  let(:station) {double :station}
+
   it { is_expected.to respond_to(:balance)}
 
-  it { is_expected.to respond_to(:touch_in) }
+  it { is_expected.to respond_to(:touch_in).with(1).argument  }
 
   it 'returns balance of 0' do
     expect(subject.balance).to eq 0
@@ -29,13 +32,26 @@ describe Oystercard do
 
   describe '#touch_in' do
     it 'returns "in use" ' do
-      expect( subject.touch_in).to be true
+      expect( subject.touch_in(station)).to be true
     end
+    
+    it 'stores entry station' do
+      subject.touch_in(station)
+      expect(subject.entry_station).to eq station
+    end
+      
   end
+
 
   describe '#touch_out' do
     it 'returns "not in use"' do
       expect(subject.touch_out).to be false
+    end
+
+    it 'changes entry station to nil' do
+      subject.touch_in(station)
+      subject.touch_out
+      expect(subject.entry_station).to eq nil
     end
   end
 
@@ -47,7 +63,7 @@ describe Oystercard do
 
   context 'when in journey' do
     it 'returns true' do
-      subject.touch_in
+      subject.touch_in(station)
       expect(subject.in_journey?).to be true
     end
   end
