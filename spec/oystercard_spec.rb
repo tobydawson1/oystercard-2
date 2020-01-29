@@ -3,6 +3,7 @@ require 'oystercard'
 describe Oystercard do
 
   let(:station) {double :station}
+  let(:station2) {double :station}
 
   it { is_expected.to respond_to(:balance)}
 
@@ -26,17 +27,6 @@ describe Oystercard do
 
   describe '#touch_in' do
 
-    it 'returns "in use" ' do
-      subject.top_up(10)
-      expect( subject.touch_in(station)).to be true
-    end
-    
-    it 'stores entry station' do
-      subject.top_up(10)
-      subject.touch_in(station)
-      expect(subject.entry_station).to eq station
-    end
-
     it 'raises an error if minimum fare not met' do
       min_balance = Oystercard::MIN_BALANCE
       expect{ subject.touch_in(station) }.to raise_error("Minimum fare of £#{min_balance} not met")
@@ -52,18 +42,12 @@ describe Oystercard do
     end
 
     it 'returns "not in use"' do
-      expect(subject.touch_out).to be false
-    end
-
-    it 'changes entry station to nil' do
-      subject.touch_in(station)
-      subject.touch_out
-      expect(subject.entry_station).to eq nil
+      expect(subject.touch_out(station2)).to be false
     end
 
     it 'charges for journey' do
       min_balance = Oystercard::MIN_BALANCE
-      expect{subject.touch_out}.to change{subject.balance}.by(-min_balance)
+      expect{subject.touch_out(station2)}.to change{subject.balance}.by(-min_balance)
     end
   end
 
@@ -71,15 +55,45 @@ describe Oystercard do
     it 'returns false' do
       expect(subject.in_journey?).to be false
     end
+
+    it 'has an empty list of journeys by default' do
+      expect(subject.journeys).to be_empty 
+    end
   end
 
-  context 'when in journey' do
+  context 'when tapped in' do
     before do
       subject.top_up(10)
-    end
-    it 'returns true' do
       subject.touch_in(station)
+    end
+
+    it 'returns true' do
       expect(subject.in_journey?).to be true
+    end
+
+    it 'stores entry station' do
+      expect(subject.entry_station).to eq station
+    end
+
+  end
+
+  context 'when tapped out' do
+    before do
+      subject.top_up(10)
+      subject.touch_in(station)
+      subject.touch_out(station2)
+    end
+
+    it 'stores exit station' do
+      expect(subject.exit_station).to eq station2
+    end
+
+    it 'stores entry and exit stations' do
+      expect(subject.journeys).to include(:entry_station => station, :exit_station => station2)
+    end
+
+    it 'changes entry station to nil' do
+      expect(subject.entry_station).to eq nil
     end
   end
 
