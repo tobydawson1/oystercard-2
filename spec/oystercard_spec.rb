@@ -42,7 +42,7 @@ describe Oystercard do
     end
 
     it 'returns "not in use"' do
-      expect(subject.touch_out(station2)).to be false
+      expect(subject.in_journey?).to eq false
     end
 
     it 'charges for journey' do
@@ -56,9 +56,6 @@ describe Oystercard do
       expect(subject.in_journey?).to be false
     end
 
-    it 'has an empty list of journeys by default' do
-      expect(subject.journeys).to be_empty 
-    end
   end
 
   context 'when tapped in' do
@@ -72,7 +69,7 @@ describe Oystercard do
     end
 
     it 'stores entry station' do
-      expect(subject.entry_station).to eq station
+      expect(subject.journeys.entry_station).to eq station
     end
 
   end
@@ -85,15 +82,15 @@ describe Oystercard do
     end
 
     it 'stores exit station' do
-      expect(subject.exit_station).to eq station2
+      expect(subject.journeys.exit_station).to eq station2
     end
 
     it 'stores entry and exit stations' do
-      expect(subject.journeys).to include(:entry_station => station, :exit_station => station2)
+      expect(subject.journeys.journeys).to include(:entry_station => station, :exit_station => station2)
     end
 
     it 'changes entry station to nil' do
-      expect(subject.entry_station).to eq nil
+      expect(subject.journeys.entry_station).to eq nil
     end
   end
 
