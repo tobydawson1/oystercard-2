@@ -1,11 +1,7 @@
 require 'station'
 
-describe Station do
+describe Station.new(1 ,2) do
 
-    #  it { is_expected.to respond_to(subject.initialize).with(2).argument  }
-
-    expect(subject).to respond_to(:initialize).with(2).argument 
-
-    it 'has a name' do
-    end
+    it { is_expected.to have_attributes(:zone => 2, :name => 1) }
+   
 end
