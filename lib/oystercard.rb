@@ -18,14 +18,18 @@ class Oystercard
 
   def touch_in(station)
     fail "Minimum fare of £#{MIN_BALANCE} not met" if minimum_balance?
+    if self.in_journey? 
+      self.journeys.set_entry_station(nil)
+      fare
+    end
     self.journeys.set_entry_station(station)
   end
 
   def touch_out(station)
     self.journeys.set_exit_station(station)
     fare
-    self.journeys.set_entry_station(nil)
     self.journeys.store_journey
+    self.journeys.set_entry_station(nil)
   end
 
    def in_journey?

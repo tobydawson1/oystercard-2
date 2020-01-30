@@ -47,6 +47,7 @@ describe Oystercard do
 
     it 'charges for journey' do
       min_balance = Oystercard::MIN_BALANCE
+      subject.touch_in(station)
       expect{subject.touch_out(station2)}.to change{subject.balance}.by(-min_balance)
     end
   end
