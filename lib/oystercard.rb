@@ -1,4 +1,4 @@
-require 'journey'
+require './lib/journey.rb'
 
 class Oystercard
   attr_reader :balance, :journeys
@@ -15,7 +15,7 @@ class Oystercard
     fail "Amount entered exceeds top limit of £#{MAX_BALANCE}" if maximum_limit?(amount)
     @balance += amount
   end
-  
+
   def touch_in(station)
     fail "Minimum fare of £#{MIN_BALANCE} not met" if minimum_balance?
     self.journeys.set_entry_station(station)
@@ -23,8 +23,9 @@ class Oystercard
 
   def touch_out(station)
     self.journeys.set_exit_station(station)
-    deduct(MIN_BALANCE)
+    fare
     self.journeys.set_entry_station(nil)
+    self.journeys.store_journey
   end
 
    def in_journey?
@@ -45,6 +46,6 @@ class Oystercard
   end
 
   def fare
-    deduct(PENALTY)
+    deduct self.in_journey? == true ? MIN_BALANCE : PENALTY
   end
 end

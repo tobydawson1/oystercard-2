@@ -10,12 +10,10 @@ class Journey
 
     def set_entry_station(station)
         @entry_station = station
-        store_journey
     end
 
     def set_exit_station(station)
         @exit_station = station
-        store_journey
     end
 
     def store_journey
