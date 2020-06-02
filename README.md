@@ -4,5 +4,7 @@
 
 [Task](#Task) | [Installation Instructions](#Installation) | [Functions and Methods](#Methods) |[User Stories](#Stories) | [Testing](#Testing) |
 
+## Task
 
+## <a name='installation'> Installation Instructions </a>
 
