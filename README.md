@@ -8,3 +8,4 @@
 
 ## <a name='Installation'> Installation Instructions </a>
 
+## <a name='Methods'> Functions and Methods </a>
