@@ -2,4 +2,7 @@
 
 # Oystercard
 
-| [Task](#task) | Installation Instructions | Feature Tests | User Stories | Objects & Methods | Testing | Further improvements
+[Task](#Task) | [Installation Instructions](#Installation) | [Functions and Methods](#Methods) |[User Stories](#Stories) | [Testing](#Testing) |
+
+
+
