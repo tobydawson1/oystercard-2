@@ -79,4 +79,4 @@ I need to have the correct fare calculated
 
 ## Testing
 
-Testing was run throught the terminal using Rspec
+Testing was run through the terminal using Rspec
