@@ -82,5 +82,6 @@ I need to have the correct fare calculated
 Testing was run through the terminal using Rspec
 
 ```
-
+cd oystercard_ruby
+rspec
 ```
