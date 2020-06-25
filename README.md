@@ -10,6 +10,12 @@ The taks is to create an Oyster Card clone. The programme must be able to calula
 
 ## <a name='Installation'> Installation Instructions </a>
 
+Clone or fork the Repo
+
+```
+git clone 
+```
+
 ## <a name='Methods'> Functions and Methods </a>
 
 ## <a name='Stories'> User Stories </a>
