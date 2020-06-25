@@ -16,6 +16,10 @@ Clone or fork the Repo
 git clone git@github.com:tobydawson1/oystercard_ruby.git
 ```
 
+Install dependencies and gems
+
+```
+```
 ## <a name='Methods'> Functions and Methods </a>
 
 ## <a name='Stories'> User Stories </a>
