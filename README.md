@@ -13,7 +13,7 @@ The taks is to create an Oyster Card clone. The programme must be able to calula
 Clone or fork the Repo
 
 ```
-git clone 
+git clone git@github.com:tobydawson1/oystercard_ruby.git
 ```
 
 ## <a name='Methods'> Functions and Methods </a>
