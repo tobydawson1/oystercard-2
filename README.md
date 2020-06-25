@@ -19,7 +19,10 @@ git clone git@github.com:tobydawson1/oystercard_ruby.git
 Install dependencies and gems
 
 ```
+cd oystercard_ruby
+bundle install
 ```
+
 ## <a name='Methods'> Functions and Methods </a>
 
 ## <a name='Stories'> User Stories </a>
